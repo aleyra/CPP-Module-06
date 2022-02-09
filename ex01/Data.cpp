@@ -1,6 +1,7 @@
 #include "Data.hpp"
 
 Data::Data(){
+	this->_proof = NULL;
 }
 
 Data::Data(Data const &src){
@@ -11,7 +12,7 @@ Data::~Data(){
 }
 
 Data	&Data::operator=(Data const &src){
-	(void)src;
+	this->_proof = src._proof;
 	return(*this);
 }
 

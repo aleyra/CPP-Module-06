@@ -17,7 +17,7 @@ public:
 protected:
 
 private:
-
+	void	*_proof;
 };
 
 #endif
