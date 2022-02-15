@@ -12,7 +12,7 @@ OBJS		=	$(addprefix $(PATH_OBJ)/, $(SRCS:.cpp=.o))
 INCS		=	Base.hpp A.hpp B.hpp C.hpp
 
 # Commands of compilation
-COMP		=	clang++
+COMP		=	c++
 COMP_FLAG	=	-Wall -Werror -Wextra
 
 # Others Command
