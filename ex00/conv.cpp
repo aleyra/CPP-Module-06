@@ -55,7 +55,7 @@ int	conv::toInt(){
 
 char	conv::toChar(){
 	std::string str(this->_str);
-	if (isprint(this->_str[0]) && str.length() == 1)
+	if (isalpha(this->_str[0]) && str.length() == 1)
 		return (static_cast<char>(this->_str[0]));
 	return (static_cast<char>(this->_val));
 }
@@ -68,7 +68,6 @@ void	conv::printConv(){
 	bool	is_nan = std::isnan(this->_val);
 	bool	is_inf = std::isinf(this->_val);
 
-	std::cout << "'" << this->getVal() << "'\n";
 	std::cout << "char: ";
 	if (is_nan || is_inf)
 		std::cout << "impossible";
