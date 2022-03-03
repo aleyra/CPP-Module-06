@@ -6,7 +6,8 @@
 Base * generate(void){
 	Base * ret = NULL;
 
-	int j = rand() % 3;
+	std::srand(time(NULL));
+	int j = std::rand() % 3;
 	
 	switch (j){
 		case 1:
@@ -67,18 +68,14 @@ void identify( Base & p){
 }
 
 int	main(){
-	for(int i = 0; i < 10; i++){
-		Base*	alea = generate();
+	Base*	alea = generate();
 
-		if (alea){
-			identify (alea);
-			identify (*alea);
-		}
-
-		if (alea)
-			delete alea;
-		if (i != 9)
-			std::cout << "-----------------------------\n";
+	if (alea){
+		identify (alea);
+		identify (*alea);
 	}
+
+	if (alea)
+		delete alea;
 	return (0);
 }
