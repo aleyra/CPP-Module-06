@@ -11,9 +11,6 @@ public:
 
 	Data	&operator=(Data const &src);
 
-	uintptr_t	serialize(Data* ptr);
-	Data*		deserialize(uintptr_t raw);
-
 protected:
 
 private:

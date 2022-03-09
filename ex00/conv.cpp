@@ -10,7 +10,11 @@ conv::conv(conv const & src){
 
 conv::conv(char *str){
 	this->_str = str;
-	this->_val = std::atof(this->_str);
+	std::string s(this->_str);
+	if (s.length() == 1 && (s[0] > '9' || s[0] < '0'))
+		this->_val = static_cast<double>(s[0]);
+	else
+		this->_val = std::atof(this->_str);
 	this->_dot = false;
 	this->_only0 = false;
 	char *	dot = strchr(str, '.');
@@ -28,8 +32,7 @@ conv::conv(char *str){
 		this->_only0 = true;
 }
 
-conv::~conv(){
-}
+conv::~conv(){}
 
 conv &	conv::operator=(conv const &src){
 	this->_str = src._str;
@@ -61,12 +64,13 @@ char	conv::toChar(){
 }
 
 void	conv::printConv(){
+	std::string str(this->_str);
 	char	c = this->toChar();
 	int		i = this->toInt();
 	float	f = this->toFloat();
 	double	d = this->_val;
-	bool	is_nan = std::isnan(this->_val);
-	bool	is_inf = std::isinf(this->_val);
+	bool	is_nan = (str.compare("nan") == 0) ? true : false;
+	bool	is_inf = (str.compare("inf") == 0) ? true : false;
 
 	std::cout << "char: ";
 	if (is_nan || is_inf)
@@ -93,8 +97,8 @@ void	conv::printConv(){
 		std::cout << "-inf";
 	else
 		std::cout << f;
-	if (!is_nan && !is_inf && ((this->_dot == true && this->_only0 == true) || this->_dot == false))
-		std::cout << ".0";//
+	if (is_nan && is_inf && ((this->_dot == true && this->_only0 == true) || this->_dot == false))
+		std::cout << ".0";
 	std::cout << "f" << std::endl;
 
 	std::cout << "double: ";
@@ -106,7 +110,7 @@ void	conv::printConv(){
 		std::cout << "-inf";
 	else
 		std::cout << d;
-	if (!is_nan && !is_inf && ((this->_dot == true && this->_only0 == true) || this->_dot == false))
+	if (is_nan == true && is_inf == true && ((this->_dot == true && this->_only0 == true) || this->_dot == false))
 		std::cout << ".0";
 	std::cout << std::endl;
 }
